@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Quantico&family=Roboto:wght@300;400;700&display=swap');
+
+
+body {
+    background-color: #1e222e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', 'sans-serif';
+}
+
+.calculator {
+    background-color: #4169E1;
+    height: 65dvh;
+    width: 45dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.display {
+    background-color: #748073;
+    font-family: 'Quantico', sans-serif;
+    /* font-weight: 300; */
+    display: flex;
+    flex-direction: row;
+    align-items: bottom;
+    justify-content: flex-end;
+    height: 32px;
+    font-size: 28px;
+    border-radius: 5px;
+    padding: 2px;
+    outline:3px solid #252925;
+}
+
+.text-container {
+    font-family: 'Merriweather';
+    font-size: 32px;
+    color: white;
+    font-weight: 700;
+    align-self: flex-end;
+    margin-top: 5px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.number-container {
+    display: flex;
+    flex-direction: row;
+    font-weight: 400;
+    flex-grow: 2;
+    flex-wrap: wrap;
+    flex-basis: 75%;
+}
+
+.number-container div {
+    flex-grow: 1;
+    flex-basis: 25%;
+    margin: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.number-container .number {
+    color: #4169E1;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.operator {
+    background-color: #d62f2f;
+    color: white;
+}
+
+.operator-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    flex-basis: 25%;
+    justify-content: space-evenly;
+}
+
+.operator-container .operator {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 25%;
+    margin: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
