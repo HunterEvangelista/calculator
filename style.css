@@ -7,6 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Roboto', 'sans-serif';
+    font-size: 20px;
 }
 
 .calculator {
@@ -22,12 +23,11 @@ body {
 .display {
     background-color: #748073;
     font-family: 'Quantico', sans-serif;
-    /* font-weight: 300; */
     display: flex;
     flex-direction: row;
     align-items: bottom;
     justify-content: flex-end;
-    height: 32px;
+    height: 38px;
     font-size: 28px;
     border-radius: 5px;
     padding: 2px;
@@ -47,6 +47,10 @@ body {
     display: flex;
     flex-direction: row;
     flex: 1;
+}
+
+.button-container div {
+    cursor: pointer;
 }
 
 .number-container {
@@ -73,7 +77,8 @@ body {
     border: 1px solid black;
 }
 
-.operator {
+.operator,
+.function {
     background-color: #d62f2f;
     color: white;
 }
@@ -94,4 +99,9 @@ body {
     padding: 5px;
     margin-bottom: 20px;
     border-radius: 10px;
+}
+
+.equals {
+    flex-grow: 2;
+    flex-shrink: .55;
 }
