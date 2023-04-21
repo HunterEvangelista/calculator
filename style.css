@@ -59,12 +59,12 @@ body {
     font-weight: 400;
     flex-grow: 2;
     flex-wrap: wrap;
-    flex-basis: 75%;
+    flex-basis: 80%;
 }
 
 .number-container div {
     flex-grow: 1;
-    flex-basis: 25%;
+    flex-basis: 20%;
     margin: 5px;
     padding: 5px;
     margin-bottom: 20px;
