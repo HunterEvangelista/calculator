@@ -6,6 +6,7 @@ const clearButton = document.querySelector("#clear");
 const decimalButton = document.querySelector("#decimal");
 let displayString = "0";
 let initialEntry = true;
+let decimalSetting = false;
 
 let inputs = {
   x: "",
@@ -16,6 +17,7 @@ let inputs = {
 function restoreDefaults() {
   display.innerHTML = "0";
   initialEntry = true;
+  decimalSetting = false;
   inputs = {
     x: "",
     operator: "",
@@ -35,6 +37,21 @@ function updateDisplay() {
     handleError();
   } else {
     display.innerHTML = displayString;
+  }
+}
+
+function handleDecimal() {
+  // add decimal to display but only let it happen once
+  // add logic to check if the button has been clicked once
+  if (decimalSetting) return;
+  if (initialEntry) {
+    if (inputs.x === "") inputs.x += "0";
+    inputs.x += ".";
+    decimalSetting = true;
+  } else {
+    if (inputs.y === "") inputs.y += "0";
+    inputs.y += ".";
+    decimalSetting = true;
   }
 }
 
@@ -59,6 +76,7 @@ function operate(args) {
       break;
     // no default
   }
+  if (decimalSetting) answer = answer.toFixed(2);
   inputs = {
     x: answer,
     operator: "",
@@ -69,12 +87,6 @@ function operate(args) {
 }
 
 function handleNumberClick(e) {
-  // update inputs object with the corresponding number
-  // if input.x is empty add the number to that object
-  // otherwise add it to input.y
-  // make sure to check that if the number is too big for the display it converts to
-  // scientific notation
-  console.log(e);
   if (initialEntry) {
     inputs.x = inputs.x.concat(e.target.id);
     updateDisplay();
@@ -104,6 +116,7 @@ function handleOperatorClick(e) {
   // handle any other operation
   inputs.operator = operation;
   initialEntry = false;
+  decimalSetting = false;
   updateDisplay();
 }
 
@@ -121,3 +134,5 @@ operatorButtons.forEach((i) => {
 });
 
 clearButton.addEventListener("click", handleClear);
+
+decimalButton.addEventListener("click", handleDecimal);
