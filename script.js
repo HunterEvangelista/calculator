@@ -13,17 +13,36 @@ let inputs = {
   y: "",
 };
 
+function restoreDefaults() {
+  display.innerHTML = "0";
+  initialEntry = true;
+  inputs = {
+    x: "",
+    operator: "",
+    y: "",
+  };
+}
+
+function handleError() {
+  restoreDefaults();
+  display.innerHTML = "ERR";
+}
+
 function updateDisplay() {
   // max characters in the display is 21
   displayString = `${inputs.x}${inputs.operator}${inputs.y}`;
-  display.innerHTML = displayString;
+  if (displayString.length > 18) {
+    handleError();
+  } else {
+    display.innerHTML = displayString;
+  }
 }
 
 function operate(args) {
   let answer = "";
   switch (args.operator) {
     case "+":
-      answer = args.x + args.y;
+      answer = parseInt(args.x, 10) + parseInt(args.y, 10);
       break;
     case "-":
       answer = args.x - args.y;
@@ -31,7 +50,11 @@ function operate(args) {
     case "*":
       answer = args.x * args.y;
       break;
-    case "/":
+    case "÷":
+      if (args.y === "0") {
+        handleError();
+        return;
+      }
       answer = args.x / args.y;
       break;
     // no default
@@ -57,6 +80,7 @@ function handleNumberClick(e) {
     updateDisplay();
   } else {
     inputs.y = inputs.y.concat(e.target.id);
+    updateDisplay();
   }
 }
 
@@ -70,26 +94,17 @@ function handleOperatorClick(e) {
   if (operation === "=") {
     try {
       operate(inputs);
-      return;
     } catch (err) {
+      restoreDefaults();
       displayString = "ERR";
       display.innerHTML = displayString;
     }
+    return;
   }
   // handle any other operation
   inputs.operator = operation;
   initialEntry = false;
   updateDisplay();
-}
-
-function restoreDefaults(){
-  display.innerHTML = "0";
-  initialEntry = true;
-  inputs = {
-    x: "",
-    operator: "",
-    y: "",
-  };
 }
 
 function handleClear() {
